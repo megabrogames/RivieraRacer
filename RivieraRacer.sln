@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RivieraRacer.Plugins", "RivieraRacer.Plugins.csproj", "{B0C6E3A0-BB42-3CA2-77D8-F88A923A8FC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RivieraRacer", "RivieraRacer.csproj", "{986799BE-4337-D88B-1A6B-38F021DE1591}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RivieraRacer.Editor.Plugins", "RivieraRacer.Editor.Plugins.csproj", "{CFCBB58B-2F92-544A-2FDA-66E7DB85E2B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0C6E3A0-BB42-3CA2-77D8-F88A923A8FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0C6E3A0-BB42-3CA2-77D8-F88A923A8FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0C6E3A0-BB42-3CA2-77D8-F88A923A8FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0C6E3A0-BB42-3CA2-77D8-F88A923A8FC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{986799BE-4337-D88B-1A6B-38F021DE1591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{986799BE-4337-D88B-1A6B-38F021DE1591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{986799BE-4337-D88B-1A6B-38F021DE1591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{986799BE-4337-D88B-1A6B-38F021DE1591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFCBB58B-2F92-544A-2FDA-66E7DB85E2B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFCBB58B-2F92-544A-2FDA-66E7DB85E2B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFCBB58B-2F92-544A-2FDA-66E7DB85E2B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFCBB58B-2F92-544A-2FDA-66E7DB85E2B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
