@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34978887, g: 0.44953346, b: 0.5882694, a: 1}
+  m_IndirectSpecularColor: {r: 0.3500668, g: 0.44915104, b: 0.5880307, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -717,13 +717,21 @@ GameObject:
   - component: {fileID: 619896342}
   - component: {fileID: 619896341}
   - component: {fileID: 619896340}
+  - component: {fileID: 619896339}
   m_Layer: 0
   m_Name: Menu-Camera
-  m_TagString: Untagged
+  m_TagString: MenuCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!81 &619896339
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 619896338}
+  m_Enabled: 1
 --- !u!92 &619896340
 Behaviour:
   m_ObjectHideFlags: 0
@@ -864,6 +872,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400000, guid: 9529ecc3d479da5499993355e6c2cb4f, type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 9529ecc3d479da5499993355e6c2cb4f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 9529ecc3d479da5499993355e6c2cb4f, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1020,7 +1036,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1005498823}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 50}
   m_LocalScale: {x: 100, y: 1, z: 200}
   m_Children: []
@@ -1246,7 +1262,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Riviera Racer
 --- !u!222 &1114491713
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1730,10 +1746,10 @@ MonoBehaviour:
   m_Script: {fileID: -822479833, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NetworkPort: 7778
+  m_NetworkPort: 7777
   m_ServerBindToIP: 0
   m_ServerBindAddress: 
-  m_NetworkAddress: 192.168.0.121
+  m_NetworkAddress: 192.168.0.120
   m_DontDestroyOnLoad: 1
   m_RunInBackground: 1
   m_ScriptCRCCheck: 0
@@ -1798,7 +1814,7 @@ MonoBehaviour:
   m_MatchHost: mm.unet.unity3d.com
   m_MatchPort: 443
   matchName: default
-  matchSize: 4
+  matchSize: 2
   isNetworkActive: 0
   matchMaker: {fileID: 0}
 --- !u!4 &1968734090
@@ -1844,7 +1860,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starterClockText: {fileID: 1114491712}
   raceStarted: 0
-  starterSound: {fileID: 0}
+  starterSound: {fileID: 8300000, guid: e06a3bb657b5e0b4cbdf96d7001e87b5, type: 3}
+  bgMusic: {fileID: 8300000, guid: 2f582b7ec6f5b844ca5c640fff1b9ed2, type: 3}
 --- !u!4 &1977598773
 Transform:
   m_ObjectHideFlags: 0
@@ -1867,7 +1884,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e06a3bb657b5e0b4cbdf96d7001e87b5, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

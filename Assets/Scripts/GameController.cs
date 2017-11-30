@@ -10,8 +10,8 @@ public class GameController : MonoBehaviour {
     public Text starterClockText;
 
     float startingClock = 4f;
-    [HideInInspector] private bool starterClockCompleted = false;
-    [HideInInspector] private bool playersReady = false;
+    private bool starterClockCompleted = false;
+    private bool playersReady = false;
     [HideInInspector] public bool raceStarted = false;
 
 
@@ -21,16 +21,24 @@ public class GameController : MonoBehaviour {
 
     AudioSource audioSource;
     public AudioClip starterSound;
+    public AudioClip bgMusic;
     bool starterSoundPlaying = false;
+
+    GameObject menuCam;
+
+
 
 
 
     private void Awake()
     {
-        starterClockText.text = "Awaiting Players";
+
         instance = this;
         audioSource = GetComponent<AudioSource>();
-
+        audioSource.clip = bgMusic;
+        audioSource.loop = true;
+        audioSource.Play();
+        menuCam = GameObject.FindGameObjectWithTag("MenuCamera");
     }
 
     void Start () {
@@ -39,6 +47,8 @@ public class GameController : MonoBehaviour {
 
     public void RegisterPlayer(GameObject playerObject)
     {
+        starterClockText.text = "Awaiting Players";
+        menuCam.SetActive(false);
         players.Add(playerObject);
     }
 	
@@ -50,9 +60,16 @@ public class GameController : MonoBehaviour {
     
         if (playersReady && !starterClockCompleted)
         {
-            audioSource.PlayOneShot(starterSound);
+            if (!starterSoundPlaying)
+            {
+                audioSource.PlayOneShot(starterSound);
+                starterSoundPlaying = true;
+            }
+
             startingClock -= Time.deltaTime;
             starterClockText.text = "" + (int)startingClock;
+
+            // start race:
             if (startingClock <= 0)
             {
                 starterClockCompleted = true;

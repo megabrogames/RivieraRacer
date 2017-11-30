@@ -17,6 +17,8 @@ public class CarUserControl : NetworkBehaviour
 
     private Vector2 startingPoint;
 
+ 
+
     public override void OnStartClient()
     {
         // the gamecontroller keeps track of how many player cars have joined game
