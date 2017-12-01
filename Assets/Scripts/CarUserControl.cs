@@ -17,14 +17,15 @@ public class CarUserControl : NetworkBehaviour
 
     private Vector2 startingPoint;
 
-
-
     bool allowInput = true;
 
     private float raceTime = 0.00f;
+    private bool raceEnded = false;
     bool raceTimerLive = false;
 
     private FrontTrigger frontTrigger;
+
+    private GameObject timePanel;
 
     public override void OnStartClient()
     {
@@ -48,7 +49,9 @@ public class CarUserControl : NetworkBehaviour
         frontTrigger = GetComponentInChildren<FrontTrigger>();
         Debug.Log("front trigger = " + frontTrigger);
 
-       
+        timePanel = GameObject.FindGameObjectWithTag("TimePanel");
+        timePanel.SetActive(false);
+        
     }
 
     private void FixedUpdate()
@@ -62,7 +65,7 @@ public class CarUserControl : NetworkBehaviour
         // update will only be called if raceStarted is true
         if (GameController.instance.raceStarted)
         {
-            if (raceTimerLive)
+            if (raceTimerLive && !raceEnded)
             {
                 raceTime += Time.deltaTime;
             }
@@ -79,7 +82,7 @@ public class CarUserControl : NetworkBehaviour
             // for now, just respawn the player if car drives off map:
             if (this.gameObject.transform.position.y < -5)
             {
-                RespawnConnectionCheck();
+                Respawn();
             }
         }
     }
@@ -90,11 +93,6 @@ public class CarUserControl : NetworkBehaviour
             EndRacing();
     }
 
-    void EndRacing()
-    {
-        raceTimerLive = false;
-        DisallowInput();
-    }
 
     void HandleInput()
     {
@@ -111,7 +109,7 @@ public class CarUserControl : NetworkBehaviour
         carCam.transform.position = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, transform.position.z + offset.z);
     }
 
-    void RespawnConnectionCheck()
+    void Respawn()
     {
         if (isServer)
         {
@@ -137,6 +135,38 @@ public class CarUserControl : NetworkBehaviour
             ResetCar();
         }
     }
+
+    void EndRacing()
+    {
+        if (isServer)
+        {
+            RpcEndRacing();
+        }
+        else
+        {
+            CmdEndRacing();
+        }
+    }
+
+    [Command]
+    void CmdEndRacing()
+    {
+        RpcEndRacing();
+    }
+
+    [ClientRpc]
+    void RpcEndRacing()
+    {
+        if (isLocalPlayer)
+        {
+            raceEnded = true;
+            raceTimerLive = false;
+            DisallowInput();
+            timePanel.SetActive(true);
+            timePanel.GetComponentInChildren<Text>().text = "Time: " + raceTime;
+        }
+    }
+
 
     void DisallowInput()
     {

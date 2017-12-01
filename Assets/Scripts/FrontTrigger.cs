@@ -8,7 +8,6 @@ public class FrontTrigger : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("something triggered front collider");
         if (other.tag == "FinishLine")
         {
             Debug.Log("Finish collision detected");

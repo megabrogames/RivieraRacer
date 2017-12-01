@@ -9,6 +9,7 @@ TagManager:
   - LocalPlayerCar
   - MenuCamera
   - FinishLine
+  - TimePanel
   layers:
   - Default
   - TransparentFX

@@ -2171,6 +2171,7 @@ MonoBehaviour:
   carCamPrefab: {fileID: 1342290076257034, guid: 0ccd735354253b94e965d27958cdb0f8,
     type: 2}
   mainBody: {fileID: 1878295095838668}
+  timePanel: {fileID: 0}
 --- !u!114 &114622592037228568
 MonoBehaviour:
   m_ObjectHideFlags: 1
