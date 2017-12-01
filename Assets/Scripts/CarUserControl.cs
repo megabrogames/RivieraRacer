@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class CarUserControl : NetworkBehaviour
 {
     private CarController m_Car; // the car controller we want to use
     [HideInInspector] public GameObject carCam;
     public GameObject carCamPrefab;
-    Material[] mats;
     public GameObject mainBody;
 
     CarController carController;
@@ -17,7 +17,14 @@ public class CarUserControl : NetworkBehaviour
 
     private Vector2 startingPoint;
 
- 
+
+
+    bool allowInput = true;
+
+    private float raceTime = 0.00f;
+    bool raceTimerLive = false;
+
+    private FrontTrigger frontTrigger;
 
     public override void OnStartClient()
     {
@@ -38,6 +45,9 @@ public class CarUserControl : NetworkBehaviour
 
         startingPoint = transform.position;
 
+        frontTrigger = GetComponentInChildren<FrontTrigger>();
+        Debug.Log("front trigger = " + frontTrigger);
+
        
     }
 
@@ -48,15 +58,42 @@ public class CarUserControl : NetworkBehaviour
             return;
         }
       
+        
+        // update will only be called if raceStarted is true
         if (GameController.instance.raceStarted)
         {
-            HandleInput();
+            if (raceTimerLive)
+            {
+                raceTime += Time.deltaTime;
+            }
+            else 
+            {
+                raceTimerLive = true;
+            }
+           
+
+            if (allowInput)
+                HandleInput();
+
+            CheckForFinish();
             // for now, just respawn the player if car drives off map:
             if (this.gameObject.transform.position.y < -5)
             {
                 RespawnConnectionCheck();
             }
         }
+    }
+
+    void CheckForFinish()
+    {
+        if (frontTrigger.isFinished)
+            EndRacing();
+    }
+
+    void EndRacing()
+    {
+        raceTimerLive = false;
+        DisallowInput();
     }
 
     void HandleInput()
@@ -97,8 +134,18 @@ public class CarUserControl : NetworkBehaviour
         {
             // Set the player’s position to the chosen spawn point
             transform.position = startingPoint;
-            carController.m_Rigidbody.velocity = Vector3.zero;
-
+            ResetCar();
         }
+    }
+
+    void DisallowInput()
+    {
+        allowInput = false;
+        carController.m_Rigidbody.velocity = Vector3.zero;
+    }
+    void ResetCar()
+    {
+        carController.m_Rigidbody.transform.eulerAngles = Vector3.zero;
+        carController.m_Rigidbody.velocity = Vector3.zero;
     }
 }

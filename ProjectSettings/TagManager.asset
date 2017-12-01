@@ -8,6 +8,7 @@ TagManager:
   - CarCamera
   - LocalPlayerCar
   - MenuCamera
+  - FinishLine
   layers:
   - Default
   - TransparentFX

@@ -94,10 +94,12 @@
     <Compile Include="Assets\Scripts\CarAudio.cs" />
     <Compile Include="Assets\Scripts\CarController.cs" />
     <Compile Include="Assets\Scripts\CarUserControl.cs" />
+    <Compile Include="Assets\Scripts\FrontTrigger.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\MudGuard.cs" />
     <Compile Include="Assets\Scripts\Suspension.cs" />
     <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />
+    <Compile Include="Assets\Scripts\TimerCanvas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

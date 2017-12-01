@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour {
 
     private int requirePlayers = 2;
 
-    List<GameObject> players = new List<GameObject>();
+    [HideInInspector] public List<GameObject> players = new List<GameObject>();
 
     AudioSource audioSource;
     public AudioClip starterSound;
@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = bgMusic;
         audioSource.loop = true;
+        audioSource.volume = 0.5f;
         audioSource.Play();
         menuCam = GameObject.FindGameObjectWithTag("MenuCamera");
     }
